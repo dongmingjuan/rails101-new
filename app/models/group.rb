@@ -4,4 +4,13 @@ class Group < ApplicationRecord
   has_many :posts
   has_many :group_relationships
   has_many :members, through: :group_relationships, source: :user
+  def publish!
+    self.is_hidden = false
+    self.save
+  end
+
+  def hide!
+    self.is_hidden = true
+    self.save  
+  end
 end

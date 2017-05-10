@@ -23,6 +23,10 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @posts = @group.posts
+    if @group.is_hidden
+      flash[:warning] = "This Group already archived"
+      redirect_to root_path
+    end
   end
 
   def edit

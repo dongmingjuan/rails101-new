@@ -17,9 +17,15 @@
           <td> <%= group.user.email %> </td>
 
           <td>
-             <%= link_to("Edit", edit_admin_group_path(group), class: "btn btn-sm btn-default")%>
-             <%= link_to("Delete", admin_group_path(group),    class: "btn btn-sm btn-default",
+              <%= link_to("Edit", edit_admin_group_path(group), class: "btn btn-sm btn-default")%>
+              <%= link_to("Delete", admin_group_path(group),    class: "btn btn-sm btn-default",
                          method: :delete, data: { confirm: "Are you sure?" } )%>
+
+              <% if group.is_hidden %>
+                <%= link_to("Publish", publish_admin_group_path(group), :method => :post, :class => "btn btn-xs btn-default") %>
+              <% else %>
+                <%= link_to("Hide", hide_admin_group_path(group), :method => :post, :class => "btn btn-xs btn-default") %>
+              <% end %>
           </td>
         </tr>
       <% end %>

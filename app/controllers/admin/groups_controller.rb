@@ -1,6 +1,7 @@
 class Admin::GroupsController < ApplicationController
     before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
     before_action :require_is_admin
+    layout "admin"
     def index
      @groups = Group.all
     end
@@ -39,6 +40,18 @@ class Admin::GroupsController < ApplicationController
     def destroy
       @group.destroy
       redirect_to admin_groups_path
+    end
+
+    def publish
+      @group = Group.find(params[:id])
+      @group.publish!
+      redirect_to :back
+    end
+
+    def hide
+      @group = Group.find(params[:id])
+      @group.hide!
+      redirect_to :back
     end
 
     private
