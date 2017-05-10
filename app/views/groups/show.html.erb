@@ -30,6 +30,7 @@
           <td><%= post.content %></td>
           <td><%= post.user.email %></td>
           <td><%= post.created_at %></td>
+          <td><%= link_to("Edit", edit_group_post_path(@group), class: "btn btn-default") %></td>
         </tr>
       <% end %>
     </tbody>
