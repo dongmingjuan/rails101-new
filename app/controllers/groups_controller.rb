@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user! , only: [:new]
+  before_action :authenticate_user! , only: [:new, :create]
   def index
    @groups = Group.all
   end
@@ -27,6 +27,8 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
+    @group.user = current_user
+    
     if @group.update(group_params)
       redirect_to groups_path
     else
