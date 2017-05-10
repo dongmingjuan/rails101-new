@@ -1,5 +1,6 @@
 class Admin::GroupsController < ApplicationController
     before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_is_admin
     def index
      @groups = Group.all
     end

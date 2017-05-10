@@ -20,4 +20,8 @@ class User < ApplicationRecord
   def quit!(group)
     participated_groups.delete(group)
   end
+
+  def admin?
+    is_admin
+  end
 end
