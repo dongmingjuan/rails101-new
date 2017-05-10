@@ -6,6 +6,7 @@
         <td>Title</td>
         <td>Description</td>
         <td>Creator </td>
+        <td>收到POST数量</td>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +16,7 @@
           <td><%= link_to(group.title, admin_group_path(group)) %></td>
           <td><%= group.description %></td>
           <td> <%= group.user.email %> </td>
+          <td> <%= link_to(group.posts.count, admin_group_posts_path(group)) %> </td>
 
           <td>
               <%= link_to("Edit", edit_admin_group_path(group), class: "btn btn-sm btn-default")%>
