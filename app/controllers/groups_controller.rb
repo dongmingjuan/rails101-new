@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :find_group_and_check_permission, only: [:edit, :update, :destroy]
 
   def index
-   @groups = Group.all
+   @groups = Group.where(:is_hidden => false)
   end
 
   def new
@@ -75,6 +75,6 @@ class GroupsController < ApplicationController
     end
   end
   def group_params
-    params.require(:group).permit(:title, :description)
+    params.require(:group).permit(:title, :description, :is_hidden)
   end
 end
